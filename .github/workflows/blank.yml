@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Google Maps Address Autocomplete</title>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuXWYr9EsbymktsDp_kwlYNhEBJD0TGwY&libraries=places"></script>
+</head>
+<body>
+  <input id="autocomplete" placeholder="Enter your address" type="text" style="width: 300px;" />
+  <script>
+    function initializeAutocomplete() {
+      const autocomplete = new google.maps.places.Autocomplete(
+        document.getElementById("autocomplete"),
+        { types: ["geocode"] }
+      );
+      autocomplete.addListener("place_changed", () => {
+        const place = autocomplete.getPlace();
+        console.log("Selected Address:", place.formatted_address);
+        // Here you can update Airtable through API or another method
+      });
+    }
+    google.maps.event.addDomListener(window, "load", initializeAutocomplete);
+  </script>
+</body>
+</html>
